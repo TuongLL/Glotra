@@ -52,29 +52,21 @@ export async function POST(req: Request) {
   if (type === 'user.created' || type === 'user.updated') {
     try {
       await prisma.user.upsert({
-        where: { clerkId: data.id },
+        where: { id: data.id },
         update: {
           name: data.first_name
             ? `${data.first_name} ${data.last_name || ''}`.trim()
-            : null,
+            : '',
           email: data.email_addresses[0].email_address,
-          emailVerified:
-            data.email_addresses[0].verification?.status === 'verified'
-              ? new Date()
-              : null,
           image: data.image_url || null,
           updatedAt: new Date(),
         },
         create: {
-          clerkId: data.id,
+          id: data.id,
           name: data.first_name
             ? `${data.first_name} ${data.last_name || ''}`.trim()
-            : null,
+            : '',
           email: data.email_addresses[0].email_address,
-          emailVerified:
-            data.email_addresses[0].verification?.status === 'verified'
-              ? new Date()
-              : null,
           image: data.image_url || null,
           createdAt: new Date(),
           updatedAt: new Date(),
