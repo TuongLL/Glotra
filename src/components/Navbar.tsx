@@ -54,7 +54,7 @@ export default function MainNavbar() {
             />
           ) : <></>}
           <Link
-            href="https://github.com/TuongLL"
+            href="https://github.com/TuongLL/Glotra"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--foreground)] hover:text-[var(--primary)] transition-colors duration-200"
