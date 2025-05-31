@@ -13,6 +13,7 @@ export default function HistorySidebar() {
     const [loading, setLoading] = useState(true);
     const { userId } = useAuth();
     useEffect(() => {
+        console.log(userId);
         if (!userId) return;
         const fetchHistories = async () => {
             try {

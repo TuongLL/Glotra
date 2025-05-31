@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '@clerk/nextjs';
+import { historyService } from '@/services';
 
 interface UseTranslateProps {
     query: string;
@@ -22,7 +24,7 @@ interface ITranslateResponse {
 
 
 export const useTranslate = ({ query, srcLang, tarLang }: UseTranslateProps) => {
-
+    const { userId } = useAuth();
     const [res, setRes] = useState<ITranslateResponse>({
         translated: '',
         example: '',
@@ -42,7 +44,7 @@ export const useTranslate = ({ query, srcLang, tarLang }: UseTranslateProps) => 
                 const { data: translate } = await axios.post('/api/translate', { query, srcLang, tarLang });
                 const result = translate?.translations?.[0]?.text ?? '';
                 const { data: openai } = await axios.post('/api/openai', { query: result, tarLang });
-                await axios.post('/api/history', { srcLangCode: srcLang?.code ?? 'DT', tarLangCode: tarLang.code, originText: query, translatedText: result });
+                userId && historyService.createHistory({ srcLangCode: srcLang?.code ?? 'DT', tarLangCode: tarLang.code, originText: query, translatedText: result })
                 setRes({
                     error: null,
                     translated: result,

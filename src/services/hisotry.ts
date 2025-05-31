@@ -11,12 +11,7 @@ export const historyService = {
     return response.json();
   },
 
-  createHistory: async (data: {
-    srcLangCode: string;
-    tarLangCode: string;
-    content: string;
-    userId: string;
-  }) => {
+  createHistory: async (data: { srcLangCode: string, tarLangCode: string, originText: string, translatedText: string }) => {
     const response = await fetch('/api/history', {
       method: 'POST',
       headers: {
