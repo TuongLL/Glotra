@@ -3,7 +3,6 @@ import { Inter, Poppins } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import MainFooter from '@/components/Footer';
 import MainNavbar from '@/components/Navbar';
-import { QueryProvider } from '@/providers/query';
 import { ThemeProvider } from '@/providers/theme';
 import '@/styles/globals.css';
 import type { ChildrenProps } from '@/types';
@@ -31,7 +30,6 @@ function RootLayoutContent({ children }: ChildrenProps) {
         className={`${inter.variable} ${poppins.variable} font-sans antialiased overflow-x-hidden`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryProvider>
             <div className="flex min-h-screen bg-[var(--background)] w-full overflow-x-hidden">
               <div className="flex-1 flex flex-col w-full">
                 <MainNavbar />
@@ -49,7 +47,6 @@ function RootLayoutContent({ children }: ChildrenProps) {
                 duration: 3000,
               }}
             />
-          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>

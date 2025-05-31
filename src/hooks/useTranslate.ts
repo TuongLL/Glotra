@@ -30,8 +30,6 @@ export const useTranslate = ({ query, srcLang, tarLang }: UseTranslateProps) => 
         error: ''
     })
 
-
-
     useEffect(() => {
         if (!query || !tarLang) {
             setRes({ ...res })

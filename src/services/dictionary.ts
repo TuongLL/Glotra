@@ -5,5 +5,4 @@ export const dintionaryService = {
     });
     return response.json();
   },
-
 };

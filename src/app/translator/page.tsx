@@ -6,19 +6,16 @@ import { ISelectLanguage } from '@/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeftRight, ChevronDown, ChevronUp, Copy, Sparkles, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useTranslate } from '@/hooks/useTranslate';
 import Loading from '../loading';
 import HistorySidebar from '@/components/HistorySideBar';
 import Dictionary from '@/components/Dictionary';
-
-
+import { useTranslate } from '@/hooks';
 const notify = () => toast('Copied to clipboard.');
 
 export default function TranslatorPage() {
     const skipEffectRef = useRef(false);
-
     const router = useRouter();
     const updateURLParams = (srcLang: string, tarLang: string, query: string) => {
         const params = new URLSearchParams();

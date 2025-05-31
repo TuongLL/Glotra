@@ -39,7 +39,6 @@ export type ISelectLanguage = {
   name: string
 }
 
-
 export type IDictionary = {
   word: string
   phonetic: string
@@ -63,5 +62,3 @@ export type IDictionary = {
   }
   sourceUrls: string[]
 }
-
-
